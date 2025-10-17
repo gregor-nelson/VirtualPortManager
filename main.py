@@ -11,6 +11,7 @@ from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QIcon
 
 from src.gui.main_window import MainWindow
+from src.gui.resources import resource_manager
 from src.utils.constants import APP_NAME, APP_VERSION
 
 
@@ -18,40 +19,55 @@ def main():
     """Initialize and run the Virtual Port Manager application."""
     # Disable dark mode detection
     os.environ['QT_QPA_PLATFORMTHEME'] = ''
-    
+
     # Create QApplication
     app = QApplication(sys.argv)
+
+    # Force dark color scheme globally (Qt6)
+    app.styleHints().setColorScheme(Qt.ColorScheme.Dark)
+
     app.setApplicationName(APP_NAME)
     app.setApplicationVersion(APP_VERSION)
     app.setOrganizationName("Virtual Port Manager")
-    
-    # Set native Windows style for best fusiontegration
+
+    # Set native Windows style for best integration
     app.setStyle('fusion')
-    
-    
+
+    # Load custom fonts
+    poppins_fonts = resource_manager.load_custom_fonts("Poppins")
+    jetbrains_fonts = resource_manager.load_custom_fonts("JetBrainsMono")
+
+    if poppins_fonts:
+        print(f"Loaded Poppins font variants: {', '.join(poppins_fonts)}")
+    else:
+        print("Warning: Poppins fonts not loaded, using system fallback")
+
+    if jetbrains_fonts:
+        print(f"Loaded JetBrains Mono font variants: {', '.join(jetbrains_fonts)}")
+    else:
+        print("Warning: JetBrains Mono fonts not loaded, using system fallback")
+
+    # Set application-wide font
+    app.setFont(resource_manager.get_app_font())
+
     # Set Windows-specific attributes for better integration
     if sys.platform == "win32":
         pass  # High DPI support is enabled by default in Qt6
-    
-    # Set application icon (try SVG first, then ICO)
-    svg_icon_path = os.path.join(os.path.dirname(__file__), "assets", "icons", "app_icon.svg")
-    ico_icon_path = os.path.join(os.path.dirname(__file__), "assets", "icons", "app.ico")
-    
-    if os.path.exists(svg_icon_path):
-        app.setWindowIcon(QIcon(svg_icon_path))
-    elif os.path.exists(ico_icon_path):
-        app.setWindowIcon(QIcon(ico_icon_path))
-    
-    # Apply Windows theme stylesheet
-    stylesheet_path = os.path.join(os.path.dirname(__file__), "assets", "styles", "windows_theme.qss")
-    if os.path.exists(stylesheet_path):
-        with open(stylesheet_path, 'r', encoding='utf-8') as f:
-            app.setStyleSheet(f.read())
-    
+
+    # Set application icon using resource manager
+    app_icon = resource_manager.get_app_icon()
+    if not app_icon.isNull():
+        app.setWindowIcon(app_icon)
+
+    # Apply Windows theme stylesheet using resource manager
+    stylesheet = resource_manager.load_stylesheet("windows_theme.qss")
+    if stylesheet:
+        app.setStyleSheet(stylesheet)
+
     # Create and show main window
     main_window = MainWindow()
     main_window.show()
-    
+
     # Start event loop
     sys.exit(app.exec())
 

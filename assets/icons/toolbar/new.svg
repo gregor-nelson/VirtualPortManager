@@ -1,6 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-  <!-- New/Add icon -->
-  <circle cx="16" cy="16" r="14" fill="#0078D4" stroke="#106EBE" stroke-width="1"/>
-  <path d="M16 8 L16 24 M8 16 L24 16" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
+  <!-- NEW/ADD - Document with Plus - Rich Two-Tone Design -->
+
+  <!-- Layer 1: White document structure -->
+  <!-- Document stack (showing multiple layers) -->
+  <path d="M 8 10 L 8 28 L 22 28 L 22 10 L 19 7 L 8 7 Z" fill="none" stroke="#e2e1e1" stroke-width="1.2" opacity="0.4"/>
+
+  <!-- Main document with folded corner -->
+  <path d="M 6 8 L 6 30 L 24 30 L 24 14 L 21 8 Z" fill="none" stroke="#e2e1e1" stroke-width="1.5"/>
+  <!-- Folded corner -->
+  <path d="M 21 8 L 21 14 L 24 14" fill="none" stroke="#e2e1e1" stroke-width="1.5"/>
+  <path d="M 21 8 L 21 14 L 24 14 Z" fill="#4f90cd" opacity="0.1"/>
+
+  <!-- Document lines -->
+  <line x1="9" y1="13" x2="19" y2="13" stroke="#e2e1e1" stroke-width="1" opacity="0.5"/>
+  <line x1="9" y1="16" x2="18" y2="16" stroke="#e2e1e1" stroke-width="1" opacity="0.4"/>
+  <line x1="9" y1="25" x2="19" y2="25" stroke="#e2e1e1" stroke-width="1" opacity="0.3"/>
+
+  <!-- Layer 2: Blue plus symbol (large, prominent) -->
+  <!-- Vertical bar of plus -->
+  <rect x="14" y="16" width="3" height="10" rx="1.5" fill="#4f90cd"/>
+  <!-- Horizontal bar of plus -->
+  <rect x="11.5" y="18.5" width="8" height="3" rx="1.5" fill="#4f90cd"/>
+
+  <!-- Glow effect around plus -->
+  <rect x="13.5" y="15.5" width="4" height="11" rx="2" fill="none" stroke="#4f90cd" stroke-width="1.5" opacity="0.2"/>
+  <rect x="11" y="18" width="9" height="4" rx="2" fill="none" stroke="#4f90cd" stroke-width="1.5" opacity="0.2"/>
+
+  <!-- Layer 3: Details -->
+  <!-- Corner indicators -->
+  <circle cx="26" cy="26" r="1.5" fill="#4f90cd" opacity="0.6"/>
+  <circle cx="26" cy="22" r="1" fill="#4f90cd" opacity="0.4"/>
+  <circle cx="22" cy="26" r="1" fill="#4f90cd" opacity="0.4"/>
 </svg>

@@ -1,7 +1,7 @@
 """Properties panel for displaying and editing port configuration."""
 
 from typing import Optional, Dict, Any
-from PyQt6.QtWidgets import (QWidget, QVBoxLayout, QHBoxLayout, QLabel, 
+from PyQt6.QtWidgets import (QWidget, QVBoxLayout, QHBoxLayout, QLabel,
                             QLineEdit, QComboBox, QCheckBox, QPushButton,
                             QGroupBox, QFormLayout, QTextEdit, QScrollArea,
                             QDoubleSpinBox, QSpinBox)
@@ -10,6 +10,7 @@ from PyQt6.QtGui import QFont
 
 from ...core.models import PortPair, Port
 from ...utils.constants import BOOLEAN_VALUES, PIN_ASSIGNMENT_VALUES
+from ..resources import resource_manager
 
 
 class PropertiesPanel(QScrollArea):
@@ -38,10 +39,7 @@ class PropertiesPanel(QScrollArea):
         
         # Create header
         self.header_label = QLabel("Properties")
-        font = QFont()
-        font.setPointSize(12)
-        font.setBold(True)
-        self.header_label.setFont(font)
+        self.header_label.setFont(resource_manager.get_app_font(size=12, weight=QFont.Weight.Bold))
         self.main_layout.addWidget(self.header_label)
         
         # Create content area

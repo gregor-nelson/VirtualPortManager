@@ -240,7 +240,7 @@ class MainWindow(QMainWindow):
         self.status_bar.addPermanentWidget(self.progress_bar)
         
         # Driver status label
-        self.driver_status_label = QLabel("Driver: Unknown")
+        self.driver_status_label = QLabel("")
         self.status_bar.addPermanentWidget(self.driver_status_label)
     
     # Slot implementations

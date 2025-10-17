@@ -1,10 +1,11 @@
 """Help dialog for com0com GUI Manager."""
 
 from typing import Dict, Any
-from PyQt6.QtWidgets import (QDialog, QVBoxLayout, QHBoxLayout, QTreeWidget, 
+from PyQt6.QtWidgets import (QDialog, QVBoxLayout, QHBoxLayout, QTreeWidget,
                             QTreeWidgetItem, QTextBrowser, QPushButton,
                             QSplitter, QMessageBox, QWidget)
 from PyQt6.QtCore import Qt
+from src.gui.resources import resource_manager
 
 
 class HelpDialog(QDialog):
@@ -53,6 +54,8 @@ class HelpDialog(QDialog):
         
         # Content browser
         self.content_browser = QTextBrowser()
+        # Set search paths for resolving relative image URLs in bundled executable
+        self.content_browser.setSearchPaths([str(resource_manager.assets_path)])
         content_layout.addWidget(self.content_browser)
         
         # Button bar
@@ -454,6 +457,77 @@ class HelpDialog(QDialog):
                 <p><strong>Result:</strong> Always-ready CTS/DSR, DCD indicates when remote port is open</p>
                 ''',
                 'snippet': 'setupc.exe install PortName=COM8 PortName=COM9'
+            },
+
+            'serial_router_guide': {
+                'title': 'Serial Router Application Setup Guide',
+                'content': '''
+                <h2>Serial Router Application Setup</h2>
+
+                <p><strong>Required Configuration:</strong> The serial router application requires two virtual port pairs
+                with specific parameter settings to ensure proper data routing and signal management.</p>
+
+                <div style="text-align: center; margin: 15px 0;">
+                    <img src="assets/screenshots/serial_router_new_port_dialog.png" alt="New Port Dialog" style="max-width: 100%; height: auto; border: 1px solid #ccc;">
+                    <p style="font-style: italic; color: #666; margin-top: 5px;">New Port Dialog showing parameter configuration for router setup</p>
+                </div>
+
+                <h3>Port Pair Configuration</h3>
+
+                <p><strong>Pair 2: CNCA2/CNCB2</strong></p>
+                <ul>
+                <li><strong>PortName:</strong> COM131, COM132</li>
+                <li><strong>Purpose:</strong> Primary routing pair for incoming data streams</li>
+                </ul>
+
+                <p><strong>Pair 3: CNCA3/CNCB3</strong></p>
+                <ul>
+                <li><strong>PortName:</strong> COM141, COM142</li>
+                <li><strong>Purpose:</strong> Secondary routing pair for outgoing data streams</li>
+                </ul>
+
+                <div style="text-align: center; margin: 15px 0;">
+                    <img src="assets/screenshots/serial_router_properties_panel.png" alt="Properties Panel" style="max-width: 100%; height: auto; border: 1px solid #ccc;">
+                    <p style="font-style: italic; color: #666; margin-top: 5px;">Properties panel showing configured parameters for router ports</p>
+                </div>
+
+                <h3>Required Parameters for All Ports</h3>
+
+                <p><strong>Hardware Emulation Settings:</strong></p>
+                <ul>
+                <li><strong>EmuBR=yes</strong> - Enables baud rate emulation to maintain timing accuracy during data routing operations</li>
+                <li><strong>EmuOverrun=yes</strong> - Simulates buffer overrun conditions required by the router's flow control algorithms</li>
+                <li><strong>AllDataBits=yes</strong> - Ensures complete 8-bit data transparency for all transmitted data frames</li>
+                </ul>
+
+                <p><strong>Port Behavior Settings:</strong></p>
+                <ul>
+                <li><strong>ExclusiveMode=no</strong> - Allows concurrent access required for multi-stream routing functionality</li>
+                </ul>
+
+                <p><strong>Signal Wiring Configuration:</strong></p>
+                <ul>
+                <li><strong>cts=rrts</strong> - Clear To Send signal connected to remote Ready To Send</li>
+                <li><strong>dsr=rdtr</strong> - Data Set Ready signal connected to remote Data Terminal Ready</li>
+                <li><strong>dcd=rdtr</strong> - Data Carrier Detect signal connected to remote Data Terminal Ready</li>
+                </ul>
+
+                <div style="text-align: center; margin: 15px 0;">
+                    <img src="assets/screenshots/serial_router_final_configuration.png" alt="Final Configuration" style="max-width: 100%; height: auto; border: 1px solid #ccc;">
+                    <p style="font-style: italic; color: #666; margin-top: 5px;">Port tree view showing completed router configuration with all pairs</p>
+                </div>
+
+                <h3>Installation Commands</h3>
+                <p><strong>Pair 2 Installation:</strong></p>
+                <p><code>setupc.exe install 2 PortName=COM131,EmuBR=yes,EmuOverrun=yes,ExclusiveMode=no,AllDataBits=yes,cts=rrts,dsr=rdtr,dcd=rdtr PortName=COM132,EmuBR=yes,EmuOverrun=yes,ExclusiveMode=no,AllDataBits=yes,cts=rrts,dsr=rdtr,dcd=rdtr</code></p>
+
+                <p><strong>Pair 3 Installation:</strong></p>
+                <p><code>setupc.exe install 3 PortName=COM141,EmuBR=yes,EmuOverrun=yes,ExclusiveMode=no,AllDataBits=yes,cts=rrts,dsr=rdtr,dcd=rdtr PortName=COM142,EmuBR=yes,EmuOverrun=yes,ExclusiveMode=no,AllDataBits=yes,cts=rrts,dsr=rdtr,dcd=rdtr</code></p>
+
+                <p><strong>Technical Note:</strong> These parameters provide the hardware emulation characteristics
+                and signal routing required for the router application's internal data management and external
+                device communication protocols.</p>
+                '''
             }
         }
 

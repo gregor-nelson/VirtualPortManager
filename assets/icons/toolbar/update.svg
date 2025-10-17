@@ -1,7 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-  <!-- Update/Upgrade icon -->
-  <circle cx="16" cy="16" r="14" fill="#FFC107" stroke="#E0A800" stroke-width="1"/>
-  <path d="M16 24 L16 12 M12 16 L16 12 L20 16" stroke="#FFFFFF" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M10 8 L22 8" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- UPDATE/UPGRADE - Arrow Ascending with Progress - Rich Two-Tone Design -->
+
+  <!-- Layer 1: White base structure -->
+  <!-- Platform/base line -->
+  <rect x="8" y="26" width="16" height="2" rx="1" fill="none" stroke="#e2e1e1" stroke-width="1.5"/>
+
+  <!-- Progress levels (steps) -->
+  <rect x="8" y="22" width="3" height="2" rx="0.5" fill="#e2e1e1" opacity="0.3"/>
+  <rect x="12" y="19" width="3" height="2" rx="0.5" fill="#e2e1e1" opacity="0.4"/>
+  <rect x="16" y="16" width="3" height="2" rx="0.5" fill="#e2e1e1" opacity="0.5"/>
+  <rect x="20" y="13" width="3" height="2" rx="0.5" fill="#e2e1e1" opacity="0.6"/>
+
+  <!-- Layer 2: Blue upward arrow (active) -->
+  <!-- Arrow shaft -->
+  <rect x="14.5" y="10" width="3" height="16" rx="1.5" fill="#4f90cd"/>
+
+  <!-- Arrow head (triangle) -->
+  <path d="M 16 4 L 11 12 L 21 12 Z" fill="#4f90cd"/>
+
+  <!-- Glow effect around arrow -->
+  <rect x="14" y="9.5" width="4" height="17" rx="2" fill="none" stroke="#4f90cd" stroke-width="1.5" opacity="0.15"/>
+
+  <!-- Layer 3: Details -->
+  <!-- Motion particles rising -->
+  <circle cx="10" cy="20" r="0.8" fill="#4f90cd" opacity="0.5"/>
+  <circle cx="12" cy="16" r="0.7" fill="#4f90cd" opacity="0.4"/>
+  <circle cx="20" cy="18" r="0.9" fill="#4f90cd" opacity="0.5"/>
+  <circle cx="22" cy="14" r="0.6" fill="#4f90cd" opacity="0.3"/>
+  <circle cx="18" cy="10" r="0.7" fill="#4f90cd" opacity="0.4"/>
+
+  <!-- Speed lines -->
+  <line x1="10" y1="14" x2="11" y2="11" stroke="#4f90cd" stroke-width="1" opacity="0.3" stroke-linecap="round"/>
+  <line x1="22" y1="16" x2="23" y2="13" stroke="#4f90cd" stroke-width="1" opacity="0.3" stroke-linecap="round"/>
+
+  <!-- Version indicator dots -->
+  <circle cx="7" cy="27" r="1.2" fill="none" stroke="#e2e1e1" stroke-width="1"/>
+  <circle cx="25" cy="27" r="1.2" fill="#4f90cd"/>
 </svg>

@@ -1,11 +1,12 @@
 """Command output panel component for displaying setupc.exe output."""
 
-from PyQt6.QtWidgets import (QWidget, QVBoxLayout, QHBoxLayout, QTextEdit, 
+from PyQt6.QtWidgets import (QWidget, QVBoxLayout, QHBoxLayout, QTextEdit,
                             QPushButton, QLabel, QFrame, QSplitter)
 from PyQt6.QtCore import Qt, pyqtSlot
 from PyQt6.QtGui import QFont, QTextCharFormat, QColor
 
 from ...core.models import CommandResult
+from ..resources import resource_manager
 
 
 class CommandOutputPanel(QWidget):
@@ -52,20 +53,9 @@ class CommandOutputPanel(QWidget):
         self.output_text.setReadOnly(True)
         self.output_text.setMaximumHeight(200)
         self.output_text.setMinimumHeight(100)
-        
-        # Set monospace font for proper console output formatting
-        # Try modern fonts first, fallback to system defaults
-        font_families = ["Cascadia Code", "Cascadia Mono", "JetBrains Mono", "Fira Code", "Consolas", "Courier New"]
-        console_font = QFont()
-        console_font.setStyleHint(QFont.StyleHint.Monospace)
-        console_font.setPointSize(9)
-        
-        for family in font_families:
-            console_font.setFamily(family)
-            if console_font.exactMatch():
-                break
-        
-        self.output_text.setFont(console_font)
+
+        # Set monospace font using resource manager
+        self.output_text.setFont(resource_manager.get_monospace_font())
         
         content_layout.addWidget(self.output_text)
         layout.addWidget(self.content_widget)

@@ -12,10 +12,10 @@ def main():
     script_path = os.path.join("scripts", "build.py")
     
     if not os.path.exists(script_path):
-        print("❌ Error: Build script not found at scripts/build.py")
+        print("[ERROR] Build script not found at scripts/build.py.")
         sys.exit(1)
-    
-    print("🚀 Launching build script...")
+
+    print("Launching build script.")
     print("=" * 40)
     print()
     
@@ -35,10 +35,10 @@ def main():
         build_module.main()
         
     except KeyboardInterrupt:
-        print("\n⚠️  Build interrupted by user")
+        print("\n[WARNING] Build interrupted by user.")
         sys.exit(1)
     except Exception as e:
-        print(f"❌ Error running build script: {e}")
+        print(f"[ERROR] Error running build script: {e}")
         sys.exit(1)
 
 if __name__ == "__main__":
