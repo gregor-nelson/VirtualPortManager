@@ -24,9 +24,7 @@ A Windows application for managing com0com virtual serial ports, built with PyQt
 2. Run as administrator (UAC elevation required)
 3. Install com0com driver if needed ([download here](https://sourceforge.net/projects/com0com/))
 4. Launch the executable directly
-```
 
-```
 ## Configuration
 
 Settings are stored in JSON format at:
