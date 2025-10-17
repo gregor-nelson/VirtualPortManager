@@ -179,7 +179,7 @@ class AboutDialog(QDialog):
     def open_github_repository(self):
         """Open the GitHub repository in the default browser."""
         # Replace with your actual GitHub repository URL
-        github_url = "https://github.com/gregor-nelson/VirtualPortManager"
+        github_url = ""
         QDesktopServices.openUrl(QUrl(github_url))
     
     @staticmethod
