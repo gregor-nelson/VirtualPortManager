@@ -1,6 +1,6 @@
 # com0com Virtual Port Manager
 
-A Windows GUI application for managing com0com virtual serial ports, built with PyQt6. Provides a modern ribbon interface to wrap com0com's setupc.exe command-line tool.
+A Windows application for managing com0com virtual serial ports, built with PyQt6. Provides a modern ribbon interface to wrap com0com's setupc.exe command-line tool.
 
 ## Features
 
@@ -19,13 +19,6 @@ A Windows GUI application for managing com0com virtual serial ports, built with 
 - com0com virtual serial port driver
 - Administrator privileges (for driver operations)
 
-**Development**
-- Python 3.8+
-- PyQt6 >= 6.4.0
-- PyInstaller >= 5.10.0 (for building)
-
-## Quick Start
-
 **For Users**
 1. Download `com0com-gui.exe` from releases
 2. Run as administrator (UAC elevation required)
@@ -33,66 +26,6 @@ A Windows GUI application for managing com0com virtual serial ports, built with 
 4. Launch the executable directly
 ```
 
-## Architecture
-
-**Core Components**
-- **Command Manager** (`src/core/command_manager.py`): Async setupc.exe execution with QThread workers
-- **Data Models** (`src/core/models.py`): PortPair, Port, CommandResult, DriverInfo classes
-- **Parameter Validation** (`src/core/validators.py`): Input validation for setupc.exe parameters
-- **Configuration Manager** (`src/core/config_manager.py`): JSON-based settings persistence
-
-**GUI Components**
-- **Main Window** (`src/gui/main_window.py`): Central interface with ribbon, tree, properties panel
-- **Ribbon Toolbar** (`src/gui/components/ribbon_toolbar.py`): Microsoft-style command interface
-- **Port Tree Widget** (`src/gui/components/port_tree_widget.py`): Hierarchical port display
-- **Properties Panel** (`src/gui/components/properties_panel.py`): Dynamic configuration forms
-- **Command Output Panel** (`src/gui/components/command_output.py`): Real-time logging
-
-**Dialog System**
-- **New Port Dialog** (`src/gui/dialogs/new_port_dialog.py`): Create port pairs
-- **Configure Dialog** (`src/gui/dialogs/configure_dialog.py`): Edit port parameters
-- **Driver Operations Dialog** (`src/gui/dialogs/driver_ops_dialog.py`): Driver management
-- **Setup Wizard** (`src/gui/dialogs/setup_wizard_dialog.py`): First-time setup
-
-## Visual Design
-
-**SVG Icon System**
-- Custom serial port themed application icon
-- Hierarchical tree icons for port pairs and individual ports
-- Complete ribbon command set with semantic colour coding
-- Native PyQt6 SVG support for crisp scaling
-
-**Windows Theme**
-- Custom QSS stylesheet (`assets/styles/windows_theme.qss`)
-- Matches Windows 10/11 design language
-- High DPI display support
-
-## setupc.exe Integration
-
-**Supported Commands**
-- `setupc list` - List current port pairs
-- `setupc install <pair> <params>` - Create port pair
-- `setupc remove <pair>` - Remove port pair
-- `setupc change <port> <params>` - Modify port parameters
-- `setupc preinstall/update/reload/uninstall` - Driver operations
-
-**Parameter Validation**
-- Port numbers: 0-999
-- Port identifiers: CNC[AB]\d+ pattern
-- Boolean values: "yes"/"no"
-- COM ports: COM1-COM999 or COM# for auto-assignment
-- EmuNoise: 0.0-0.99999999 range
-- Pin assignments: Comprehensive validation
-
-## Testing
-
-Testing framework is planned but not yet implemented. The application uses manual testing with setupc.exe integration.
-
-## Building
-
-**Create Executable**
-```bash
-python build.py    # Creates single-file executable with UAC elevation
 ```
 ## Configuration
 
