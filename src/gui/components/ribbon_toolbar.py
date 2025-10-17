@@ -2,10 +2,10 @@
 
 import os
 from typing import Optional
-from PyQt6.QtWidgets import (QToolBar, QWidget, QHBoxLayout, QVBoxLayout, 
+from PyQt6.QtWidgets import (QToolBar, QWidget, QHBoxLayout, QVBoxLayout,
                             QLabel, QPushButton, QFrame)
 from PyQt6.QtCore import Qt, pyqtSignal, QSize
-from PyQt6.QtGui import QIcon
+from PyQt6.QtGui import QIcon, QFont
 
 from ...core.models import PortPair, Port
 
@@ -16,16 +16,18 @@ class RibbonButton(QPushButton):
     def __init__(self, text: str, icon_name: str = None, parent=None):
         super().__init__(parent)
         self.setText(text)
-        
-        # Windows 10-like button sizing and styling
-        self.setStyleSheet("QPushButton { padding: 4px 8px; }")
-        
+
         # Set icon if provided
         if icon_name:
             icon = self._load_svg_icon(icon_name)
             if not icon.isNull():
                 self.setIcon(icon)
                 self.setIconSize(QSize(16, 16))  # Standard Windows icon size
+
+        # Set medium font weight for better readability
+        font = self.font()
+        font.setWeight(QFont.Weight.Medium)
+        self.setFont(font)
         
     
     def _load_svg_icon(self, icon_name: str):
